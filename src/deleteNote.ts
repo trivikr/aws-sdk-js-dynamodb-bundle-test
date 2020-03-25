@@ -3,9 +3,9 @@ import { success, failure } from "./libs/response";
 import { DeleteItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent } from "aws-lambda";
 
-const deleteNote = async (event: APIGatewayProxyEvent) => {
+const handler = async (event: APIGatewayProxyEvent) => {
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.NOTES_TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be removed
     // - 'noteId': path parameter
     Key: {
@@ -24,4 +24,4 @@ const deleteNote = async (event: APIGatewayProxyEvent) => {
   }
 };
 
-export { deleteNote };
+export { handler };

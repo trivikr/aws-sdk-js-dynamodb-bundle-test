@@ -3,9 +3,9 @@ import { success, failure } from "./libs/response";
 import { GetItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent } from "aws-lambda";
 
-const getNote = async (event: APIGatewayProxyEvent) => {
+const handler = async (event: APIGatewayProxyEvent) => {
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.NOTES_TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be retrieved
     // - 'noteId': path parameter
     Key: {
@@ -27,4 +27,4 @@ const getNote = async (event: APIGatewayProxyEvent) => {
   }
 };
 
-export { getNote };
+export { handler };

@@ -4,10 +4,10 @@ import { PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { success, failure } from "./libs/response";
 import { APIGatewayEvent } from "aws-lambda";
 
-const createNote = async (event: APIGatewayEvent) => {
+const handler = async (event: APIGatewayEvent) => {
   const data = JSON.parse(event.body || "{}");
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.NOTES_TABLE_NAME,
     Item: {
       noteId: {
         S: crypto.randomBytes(20).toString("hex")
@@ -34,4 +34,4 @@ const createNote = async (event: APIGatewayEvent) => {
   }
 };
 
-export { createNote };
+export { handler };

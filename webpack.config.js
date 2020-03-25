@@ -1,5 +1,7 @@
 /* eslint-disable */
 const glob = require("glob");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
 const entryArray = glob.sync("./src/*.ts");
 
 module.exports = {
@@ -10,7 +12,8 @@ module.exports = {
   }, {}),
 
   output: {
-    filename: "[name].js"
+    filename: "[name].js",
+    libraryTarget: "commonjs"
   },
 
   // Resolve .ts and .js extensions
@@ -32,5 +35,7 @@ module.exports = {
         loader: "ts-loader"
       }
     ]
-  }
+  },
+
+  plugins: [new CleanWebpackPlugin()]
 };

@@ -3,10 +3,10 @@ import { success, failure } from "./libs/response";
 import { UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent } from "aws-lambda";
 
-const updateNote = async (event: APIGatewayProxyEvent) => {
+const handler = async (event: APIGatewayProxyEvent) => {
   const data = JSON.parse(event.body || "{}");
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.NOTES_TABLE_NAME,
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'noteId': path parameter
     Key: {
@@ -35,4 +35,4 @@ const updateNote = async (event: APIGatewayProxyEvent) => {
   }
 };
 
-export { updateNote };
+export { handler };
