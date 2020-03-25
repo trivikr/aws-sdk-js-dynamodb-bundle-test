@@ -11,13 +11,49 @@ export class BundleTestStack extends cdk.Stack {
       partitionKey: { name: "noteId", type: dynamodb.AttributeType.STRING }
     });
 
-    const listNotes = new ApiConstruct(this, "listNotes", {
-      name: "listNotes",
-      table
-    });
+    const api = new apigw.RestApi(this, "BundleTestStackEndpoint", {});
+    const notes = api.root.addResource("notes");
+    notes.addMethod(
+      "GET",
+      new apigw.LambdaIntegration(
+        new ApiConstruct(this, "listNotes", {
+          table
+        }).handler
+      )
+    );
+    notes.addMethod(
+      "POST",
+      new apigw.LambdaIntegration(
+        new ApiConstruct(this, "createNote", {
+          table
+        }).handler
+      )
+    );
 
-    new apigw.LambdaRestApi(this, "BundleTestStackEndpoint", {
-      handler: listNotes.handler
-    });
+    const note = notes.addResource("{id}");
+    note.addMethod(
+      "GET",
+      new apigw.LambdaIntegration(
+        new ApiConstruct(this, "getNote", {
+          table
+        }).handler
+      )
+    );
+    note.addMethod(
+      "PUT",
+      new apigw.LambdaIntegration(
+        new ApiConstruct(this, "updateNote", {
+          table
+        }).handler
+      )
+    );
+    note.addMethod(
+      "DELETE",
+      new apigw.LambdaIntegration(
+        new ApiConstruct(this, "deleteNote", {
+          table
+        }).handler
+      )
+    );
   }
 }

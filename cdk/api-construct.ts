@@ -3,9 +3,6 @@ import * as lambda from "@aws-cdk/aws-lambda";
 import { Table } from "@aws-cdk/aws-dynamodb";
 
 export interface ApiConstructProps {
-  /** the name to be passed to lambda function **/
-  name: string;
-
   /** the dynamodb table to be passed to lambda function **/
   table: Table;
 }
@@ -17,11 +14,11 @@ export class ApiConstruct extends cdk.Construct {
   constructor(scope: cdk.Construct, id: string, props: ApiConstructProps) {
     super(scope, id);
 
-    const { name, table } = props;
+    const { table } = props;
 
     this.handler = new lambda.Function(this, "Handler", {
       runtime: lambda.Runtime.NODEJS_12_X,
-      handler: `${name}.handler`,
+      handler: `${id}.handler`,
       code: lambda.Code.fromAsset("dist"),
       environment: {
         NOTES_TABLE_NAME: table.tableName
