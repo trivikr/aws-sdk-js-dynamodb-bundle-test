@@ -3,7 +3,7 @@ import * as lambda from "@aws-cdk/aws-lambda";
 import * as apigw from "@aws-cdk/aws-apigateway";
 import { HitCounter } from "./hitcounter";
 
-export class TestStack extends cdk.Stack {
+export class AwsSdkDynamodbBundleTest extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 

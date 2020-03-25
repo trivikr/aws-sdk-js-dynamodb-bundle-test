@@ -1,5 +1,5 @@
 import * as cdk from "@aws-cdk/core";
-import { TestStack } from "./test-stack";
+import { AwsSdkDynamodbBundleTest } from "./aws-sdk-dynamodb-bundle-test-stack";
 
 const app = new cdk.App();
-new TestStack(app, "TestStack");
+new AwsSdkDynamodbBundleTest(app, "AwsSdkDynamodbBundleTest");
