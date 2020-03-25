@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "aws-sdk-js-dynamodb-bundle-test",
   "version": "0.1.0",
   "scripts": {
     "build": "tsc",
