@@ -9,8 +9,8 @@ const handler = async (event: APIGatewayProxyEvent) => {
     // 'Key' defines the partition key and sort key of the item to be retrieved
     // - 'noteId': path parameter
     Key: {
-      noteId: { S: event.pathParameters?.id }
-    }
+      noteId: { S: event.pathParameters?.id },
+    },
   };
 
   try {

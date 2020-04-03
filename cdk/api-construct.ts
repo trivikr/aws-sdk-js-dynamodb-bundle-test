@@ -21,8 +21,8 @@ export class ApiConstruct extends cdk.Construct {
       handler: `${id}.handler`,
       code: lambda.Code.fromAsset("dist"),
       environment: {
-        NOTES_TABLE_NAME: table.tableName
-      }
+        NOTES_TABLE_NAME: table.tableName,
+      },
     });
 
     // grant the lambda role read/write permissions to notes table
