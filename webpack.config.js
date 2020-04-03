@@ -13,12 +13,12 @@ module.exports = {
 
   output: {
     filename: "[name].js",
-    libraryTarget: "commonjs"
+    libraryTarget: "commonjs",
   },
 
   // Resolve .ts and .js extensions
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: [".ts", ".js"],
   },
 
   // Target node
@@ -32,10 +32,10 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        loader: "ts-loader"
-      }
-    ]
+        loader: "ts-loader",
+      },
+    ],
   },
 
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [new CleanWebpackPlugin()],
 };

@@ -10,19 +10,19 @@ const handler = async (event: APIGatewayEvent) => {
     TableName: process.env.NOTES_TABLE_NAME,
     Item: {
       noteId: {
-        S: crypto.randomBytes(20).toString("hex")
+        S: crypto.randomBytes(20).toString("hex"),
       },
       content: {
-        S: data.content
+        S: data.content,
       },
-      createdAt: { N: Date.now().toString() }
-    }
+      createdAt: { N: Date.now().toString() },
+    },
   };
 
   if (data.attachment) {
     // @ts-ignore: Property 'attachment' does not exist on type
     params.Item.attachment = {
-      S: data.attachment
+      S: data.attachment,
     };
   }
 

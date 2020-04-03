@@ -10,9 +10,9 @@ const handler = async (event: APIGatewayProxyEvent) => {
     // - 'noteId': path parameter
     Key: {
       noteId: {
-        S: event.pathParameters?.id
-      }
-    }
+        S: event.pathParameters?.id,
+      },
+    },
   };
 
   try {

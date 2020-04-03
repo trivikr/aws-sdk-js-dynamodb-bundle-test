@@ -8,7 +8,7 @@ export class BundleTestStack extends cdk.Stack {
     super(scope, id, props);
 
     const table = new dynamodb.Table(this, "Notes", {
-      partitionKey: { name: "noteId", type: dynamodb.AttributeType.STRING }
+      partitionKey: { name: "noteId", type: dynamodb.AttributeType.STRING },
     });
 
     const api = new apigw.RestApi(this, "BundleTestStackEndpoint", {});
@@ -17,7 +17,7 @@ export class BundleTestStack extends cdk.Stack {
       "GET",
       new apigw.LambdaIntegration(
         new ApiConstruct(this, "listNotes", {
-          table
+          table,
         }).handler
       )
     );
@@ -25,7 +25,7 @@ export class BundleTestStack extends cdk.Stack {
       "POST",
       new apigw.LambdaIntegration(
         new ApiConstruct(this, "createNote", {
-          table
+          table,
         }).handler
       )
     );
@@ -35,7 +35,7 @@ export class BundleTestStack extends cdk.Stack {
       "GET",
       new apigw.LambdaIntegration(
         new ApiConstruct(this, "getNote", {
-          table
+          table,
         }).handler
       )
     );
@@ -43,7 +43,7 @@ export class BundleTestStack extends cdk.Stack {
       "PUT",
       new apigw.LambdaIntegration(
         new ApiConstruct(this, "updateNote", {
-          table
+          table,
         }).handler
       )
     );
@@ -51,7 +51,7 @@ export class BundleTestStack extends cdk.Stack {
       "DELETE",
       new apigw.LambdaIntegration(
         new ApiConstruct(this, "deleteNote", {
-          table
+          table,
         }).handler
       )
     );

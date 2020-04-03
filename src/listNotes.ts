@@ -4,7 +4,7 @@ import { ScanCommand } from "@aws-sdk/client-dynamodb";
 
 const handler = async () => {
   const params = {
-    TableName: process.env.NOTES_TABLE_NAME
+    TableName: process.env.NOTES_TABLE_NAME,
   };
 
   try {
